@@ -5,19 +5,22 @@
     box-sizing: border-box;
 }
 
+/* Basic Styling */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
     line-height: 1.6;
-    background-color: #f9f9f9;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header */
 .header {
-    background-color: #00509e;
-    color: #fff;
-    padding: 2rem;
+    background-color: #005b96;
+    color: white;
     text-align: center;
+    padding: 2rem 0;
 }
 
 .header h1 {
@@ -29,58 +32,61 @@ body {
     font-size: 1.2rem;
 }
 
-/* Main Content */
-.main-content {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+/* Section Styling */
+section {
+    padding: 2rem 5%;
+    max-width: 1000px;
+    margin: auto;
 }
 
-/* Sections */
-.intro, .why-choose-us, .services, .call-to-action {
-    margin-bottom: 2rem;
+.intro, .why-choose-us, .services, .cta {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.intro h2, .why-choose-us h2, .services h2, .call-to-action h2 {
-    font-size: 2rem;
-    color: #00509e;
-    margin-bottom: 1rem;
-}
-
-ul {
-    list-style-type: none;
-}
-
-ul li {
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-ul li strong {
-    color: #00509e;
-}
-
-/* Call to Action */
-.call-to-action p {
+.intro p {
     font-size: 1.1rem;
-    margin-top: 1rem;
 }
 
-.call-to-action a {
-    color: #00509e;
-    text-decoration: none;
-    font-weight: bold;
+/* Why Choose Us Section */
+.why-choose-us h2, .services h2, .cta h2 {
+    color: #005b96;
+    margin-bottom: 1rem;
 }
 
-.call-to-action a:hover {
-    text-decoration: underline;
+.why-choose-us ul, .services ul {
+    list-style: none;
+}
+
+.why-choose-us ul li, .services ul li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.why-choose-us ul li::before, .services ul li::before {
+    content: "✔";
+    color: #005b96;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+/* Call to Action Section */
+.cta p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 0.5rem;
 }
 
 /* Footer */
 .footer {
+    background-color: #005b96;
+    color: white;
     text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
+    padding: 1rem 0;
     font-size: 0.9rem;
 }
