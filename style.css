@@ -1,30 +1,34 @@
-/* Reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Basic Styling */
+/* Body */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
     background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* Header */
 .header {
-    background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center/cover;
+    background: url('https://source.unsplash.com/1600x900/?business,technology') no-repeat center center/cover;
     color: #fff;
-    height: 80vh;
     position: relative;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1.5rem 5%;
     background: rgba(0, 0, 0, 0.7);
 }
 
@@ -49,11 +53,9 @@ body {
 }
 
 .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
     max-width: 600px;
+    margin: auto;
+    text-align: center;
 }
 
 .hero-content h2 {
@@ -101,49 +103,19 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* About Section */
-.about ul {
-    list-style: none;
-    padding-left: 0;
+/* Managed Services Title Styling */
+.service-item h3 {
+    font-size: 1.8rem;
+    color: #005b96;
+    margin-bottom: 1rem;
+    background-color: #e6f2ff;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
 }
 
-.about ul li {
+/* Paragraph styling within Service Section */
+.service-item p {
     margin: 0.8rem 0;
-}
-
-/* Why Choose Us Section */
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.feature {
-    flex: 1 1 45%;
-    max-width: 45%;
-}
-
-.features .feature::before {
-    content: "✔";
-    color: #005b96;
-    margin-right: 0.5rem;
-}
-
-/* Services Section */
-.service-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.learn-more {
-    color: #005b96;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-.learn-more:hover {
-    text-decoration: underline;
 }
 
 /* Contact Section */
