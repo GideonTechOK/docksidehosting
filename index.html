@@ -3,141 +3,896 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dockside Hosting - Power Platform & SharePoint Solutions</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dockside Hosting - Enterprise Microsoft Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1f2937;
+            --secondary: #059669;
+            --accent: #06b6d4;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--light-bg);
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #374151 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        .hero .accent {
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: #06b6d4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        /* Services Grid */
+        .services {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .service-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .service-features li {
+            padding: 0.25rem 0;
+        }
+        
+        .service-features li:before {
+            content: "✓ ";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        /* Highlights Section */
+        .highlights {
+            background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+        
+        .highlights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .highlight-item h4 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-item p {
+            opacity: 0.95;
+        }
+        
+        /* Support Tiers */
+        .tiers {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tier-card {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tier-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+        }
+        
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .tier-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+        
+        .tier-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .tier-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+        
+        .tier-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tier-features li:before {
+            content: "⚡ ";
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        /* Why Choose */
+        .why-choose {
+            background: var(--white);
+            padding: 4rem 2rem;
+        }
+        
+        .why-choose-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .why-choose-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .why-choose-list {
+            list-style: none;
+        }
+        
+        .why-choose-list li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .why-choose-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .why-choose-visual {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border-radius: 12px;
+            padding: 3rem;
+            color: var(--white);
+            text-align: center;
+            font-size: 1.2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .icon-item {
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .icon-item span {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .why-choose-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid,
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tier-card.featured {
+                transform: scale(1);
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <nav class="navbar">
-            <h1 class="logo">Dockside Hosting</h1>
-            <ul class="nav-links">
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-choose-us">Why Choose Us</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="hero">
-            <div class="hero-content">
-                <h2>Empowering Your Business with Strategic Digital Solutions</h2>
-                <p>Dockside Hosting is your dedicated partner in delivering tailored Power Platform and SharePoint services, enabling growth and innovation at every step.</p>
-                <a href="#contact" class="cta-button">Connect with Us</a>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Dock<span>side</span></div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#tiers">Support</a>
+                <a href="#why">Why Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </header>
-
-    <!-- About Us Section -->
-    <section id="about" class="section about">
-        <h2>About Dockside Hosting</h2>
-        
-        <div class="about-item">
-            <h3>Our Identity</h3>
-            <p>Founded in 2016, Dockside Hosting has grown into a trusted provider of managed services tailored for small to medium-sized enterprises. We specialize in empowering businesses through optimized processes, enhanced productivity, seamless communication, and stringent compliance monitoring. At Dockside, our goal is to simplify access to critical information and create a streamlined user experience.</p>
-        </div>
-        
-        <div class="about-item">
-            <h3>Mission</h3>
-            <p>Our mission is to empower clients to excel in mission-critical initiatives by removing technological obstacles, optimizing costs, and designing clear pathways to success.</p>
-        </div>
-        
-        <div class="about-item">
-            <h3>Vision</h3>
-            <p>To consistently provide our clients with exceptional, quality-driven services and solutions that drive meaningful results.</p>
-        </div>
-        
-        <div class="about-item">
-            <h3>Our Core Values</h3>
-            <ul>
-                <li><strong>People</strong>: We recognize our team’s expertise and professionalism as our most valuable asset, fostering a culture of growth and collaboration.</li>
-                <li><strong>Excellence</strong>: We uphold high standards in all that we do, ensuring outcomes that meet and exceed client expectations.</li>
-                <li><strong>Teamwork</strong>: We bring together diverse talents and perspectives to deliver comprehensive, well-rounded solutions.</li>
-                <li><strong>Accountability</strong>: Our commitment to transparency and responsibility ensures alignment with client goals and expectations.</li>
-                <li><strong>Innovation</strong>: We prioritize creative solutions, staying ahead of industry changes to deliver forward-thinking results.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section id="why-choose-us" class="section">
-        <h2>Why Choose Dockside Hosting?</h2>
-        <div class="features">
-            <div class="feature">
-                <h3>Unmatched Expertise</h3>
-                <p>Our team brings deep experience and specialized knowledge, from platform setup to complex customizations.</p>
-            </div>
-            <div class="feature">
-                <h3>24/7 Support</h3>
-                <p>We provide continuous support, ensuring that your essential operations are always running smoothly.</p>
-            </div>
-            <div class="feature">
-                <h3>Scalability</h3>
-                <p>Our solutions evolve with your business, empowering you to grow seamlessly and confidently.</p>
-            </div>
-            <div class="feature">
-                <h3>Security and Compliance</h3>
-                <p>We adhere to stringent industry standards to protect your data and maintain compliance with regulatory requirements.</p>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Enterprise <span class="accent">Microsoft Services</span><br>Built for Scale</h1>
+            <p>Expert managed services and support for Power Platform, SharePoint, and Azure environments</p>
+            <div class="cta-group">
+                <button class="btn btn-primary" onclick="openModal()">Get Started</button>
+                <a href="#services" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <h2>Our Services</h2>
-        
-        <div class="service-item">
-            <h3>Managed Services: Empower Your Team to Focus on Business Growth</h3>
-            <p>Unlock the full potential of Microsoft Power Platform with Dockside Hosting's Managed Services. Our dedicated team offers expert support to enhance your Power Platform environment, ensuring optimal performance and efficiency.</p>
-            <p><strong>Low-Code, No-Code Optimization:</strong> Simplify and streamline operations with our tailored low-code/no-code solutions.</p>
-            <p><strong>Integration with Key Applications:</strong> Seamlessly connect Office 365, Dynamics 365, Azure, and hundreds of other applications, establishing a unified digital ecosystem.</p>
-            <p><strong>Expert Administration & Development Support:</strong> Our professionals provide comprehensive support for both administration and app development needs.</p>
-            <p><strong>Proactive Issue Resolution:</strong> Minimize downtime with swift identification and resolution of platform issues.</p>
-            <p>Maximize your efficiency and stay ahead of challenges with Dockside Hosting’s managed services.</p>
-        </div>
-
-        <div class="service-item">
-            <h3>Microsoft SharePoint Managed Services</h3>
-            <p>Dockside Hosting provides specialized SharePoint managed services, empowering your IT team with the expertise needed to optimize and maintain your SharePoint environment.</p>
-            <a href="#contact" class="learn-more">Learn More about SharePoint Managed Services</a>
-        </div>
-        
-        <div class="service-item">
-            <h3>Pay-As-You-Go Support for SharePoint</h3>
-            <p>Access dedicated SharePoint consulting in flexible sessions, perfect for troubleshooting, strategic solution design, or skill development.</p>
-        </div>
-        
-        <div class="service-item">
-            <h3>Pay-Per-Incident Support for SharePoint</h3>
-            <p>Our on-demand support addresses specific SharePoint issues, from development and administration to integration and security.</p>
-        </div>
-        
-        <div class="service-item">
-            <h3>Prepaid SharePoint Support</h3>
-            <p>Resolve SharePoint challenges with expert assistance, whether it's overcoming project hurdles or restoring service during downtime.</p>
-        </div>
-        
-        <div class="service-item">
-            <h3>SharePoint Emergency Support</h3>
-            <p>For mission-critical SharePoint disruptions, our team provides prompt, reliable support to minimize downtime and restore productivity.</p>
-        </div>
-        
-        <div class="service-item">
-            <h3>Microsoft Power Platform Support Services</h3>
-            <p>Dockside Hosting offers customized Power Platform support, providing your team with flexible options to meet evolving business needs.</p>
-            <a href="#contact" class="learn-more">Learn More about Power Platform Support</a>
+    
+    <!-- Highlights -->
+    <section class="highlights">
+        <div class="highlights-container">
+            <div class="highlight-item">
+                <h4>500+</h4>
+                <p>Enterprise Clients</p>
+            </div>
+            <div class="highlight-item">
+                <h4>24/7</h4>
+                <p>Expert Support</p>
+            </div>
+            <div class="highlight-item">
+                <h4>99.9%</h4>
+                <p>Uptime SLA</p>
+            </div>
+            <div class="highlight-item">
+                <h4>50+</h4>
+                <p>Microsoft Certifications</p>
+            </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Contact Dockside Hosting today to learn how we can help you harness the power of Power Platform and SharePoint solutions for your business success.</p>
-        <a href="mailto:info@docksidehosting.com" class="cta-button">Get in Touch</a>
+    
+    <!-- Services -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive solutions tailored to your Microsoft infrastructure</p>
+        
+        <div class="services-grid">
+            <!-- Power Platform -->
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Power Platform Managed Services</h3>
+                <p>Optimize your Power Platform environment with expert administration and development support.</p>
+                <ul class="service-features">
+                    <li>Low-code/No-code Optimization</li>
+                    <li>Application Development</li>
+                    <li>Environment Administration</li>
+                    <li>Proactive Monitoring</li>
+                </ul>
+            </div>
+            
+            <!-- SharePoint -->
+            <div class="service-card">
+                <div class="service-icon">📁</div>
+                <h3>SharePoint Managed Services</h3>
+                <p>Enterprise-grade SharePoint administration with seamless integration capabilities.</p>
+                <ul class="service-features">
+                    <li>Site Management</li>
+                    <li>Security & Compliance</li>
+                    <li>Performance Optimization</li>
+                    <li>Migration Services</li>
+                </ul>
+            </div>
+            
+            <!-- Integration -->
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>Application Integration</h3>
+                <p>Seamlessly connect Office 365, Dynamics 365, Azure, and third-party applications.</p>
+                <ul class="service-features">
+                    <li>API Management</li>
+                    <li>Data Synchronization</li>
+                    <li>Workflow Automation</li>
+                    <li>Real-time Analytics</li>
+                </ul>
+            </div>
+            
+            <!-- Azure -->
+            <div class="service-card">
+                <div class="service-icon">☁️</div>
+                <h3>Azure Infrastructure</h3>
+                <p>Secure, scalable cloud infrastructure with enterprise-grade management.</p>
+                <ul class="service-features">
+                    <li>Infrastructure as Code</li>
+                    <li>Security Hardening</li>
+                    <li>Cost Optimization</li>
+                    <li>Disaster Recovery</li>
+                </ul>
+            </div>
+            
+            <!-- Development -->
+            <div class="service-card">
+                <div class="service-icon">👨‍💻</div>
+                <h3>Custom Development</h3>
+                <p>Bespoke solutions built on Microsoft technologies for your unique business needs.</p>
+                <ul class="service-features">
+                    <li>Full-stack Development</li>
+                    <li>Solution Architecture</li>
+                    <li>Quality Assurance</li>
+                    <li>Support & Maintenance</li>
+                </ul>
+            </div>
+            
+            <!-- Consulting -->
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Strategic Consulting</h3>
+                <p>Expert guidance on digital transformation and platform strategy.</p>
+                <ul class="service-features">
+                    <li>Platform Assessment</li>
+                    <li>Roadmap Planning</li>
+                    <li>Best Practices</li>
+                    <li>Change Management</li>
+                </ul>
+            </div>
+        </div>
     </section>
-
+    
+    <!-- Support Tiers -->
+    <section id="tiers" class="tiers">
+        <h2 class="section-title">Support Plans</h2>
+        <p class="section-subtitle">Flexible support models to match your organization's needs</p>
+        
+        <div class="tiers-grid">
+            <!-- Pay-as-you-go -->
+            <div class="tier-card">
+                <h3>Hourly Consulting</h3>
+                <p class="tier-description">Perfect for one-off projects and quick wins</p>
+                <ul class="tier-features">
+                    <li>Pay-per-hour model</li>
+                    <li>Expert consultants</li>
+                    <li>Flexible scheduling</li>
+                    <li>Project-based</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal()">Book Now</button>
+            </div>
+            
+            <!-- Per-incident -->
+            <div class="tier-card featured">
+                <div class="tier-badge">Most Popular</div>
+                <h3>Per-Incident Support</h3>
+                <p class="tier-description">On-demand support for urgent issues</p>
+                <ul class="tier-features">
+                    <li>Issue diagnosis</li>
+                    <li>Swift resolution</li>
+                    <li>Technical expertise</li>
+                    <li>24-hour response</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal()">Get Support</button>
+            </div>
+            
+            <!-- Prepaid -->
+            <div class="tier-card">
+                <h3>Prepaid Support</h3>
+                <p class="tier-description">Annual commitment with better rates</p>
+                <ul class="tier-features">
+                    <li>Discounted rates</li>
+                    <li>Priority queue</li>
+                    <li>Dedicated team</li>
+                    <li>Strategic access</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal()">Learn More</button>
+            </div>
+            
+            <!-- Emergency -->
+            <div class="tier-card">
+                <h3>Emergency Support</h3>
+                <p class="tier-description">For mission-critical outages</p>
+                <ul class="tier-features">
+                    <li>15-min response</li>
+                    <li>Dedicated engineers</li>
+                    <li>On-call availability</li>
+                    <li>War room setup</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal()">Activate</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose -->
+    <section id="why" class="why-choose">
+        <div class="why-choose-container">
+            <div class="why-choose-content">
+                <h2>Why Choose Dockside?</h2>
+                <ul class="why-choose-list">
+                    <li><strong>Microsoft Gold Partners</strong> with advanced certifications across all workloads</li>
+                    <li><strong>24/7/365 Support</strong> with guaranteed response times and SLAs</li>
+                    <li><strong>Enterprise Experience</strong> managing 500+ production environments</li>
+                    <li><strong>Proactive Monitoring</strong> preventing issues before they impact your business</li>
+                    <li><strong>Cost Optimization</strong> reducing your Microsoft cloud spend by up to 30%</li>
+                    <li><strong>Security First</strong> with compliance and governance expertise</li>
+                    <li><strong>Flexible Engagement</strong> models tailored to your needs</li>
+                </ul>
+            </div>
+            <div class="why-choose-visual">
+                <div>Enterprise-Grade Support for Your Microsoft Stack</div>
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        🏆
+                        <span>Industry Leader</span>
+                    </div>
+                    <div class="icon-item">
+                        🔐
+                        <span>Secure</span>
+                    </div>
+                    <div class="icon-item">
+                        ⚡
+                        <span>Fast</span>
+                    </div>
+                    <div class="icon-item">
+                        💼
+                        <span>Professional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2>Ready to Transform Your Microsoft Infrastructure?</h2>
+        <p>Let's discuss how Dockside Hosting can help you maximize your Microsoft investment</p>
+        <button class="btn btn-primary" onclick="openModal()">Schedule a Consultation</button>
+    </section>
+    
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Get in Touch</h2>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label>Services of Interest *</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="power" name="services" value="Power Platform">
+                            <label for="power" style="margin: 0;">Power Platform</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sharepoint" name="services" value="SharePoint">
+                            <label for="sharepoint" style="margin: 0;">SharePoint</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="azure" name="services" value="Azure">
+                            <label for="azure" style="margin: 0;">Azure</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="integration" name="services" value="Integration">
+                            <label for="integration" style="margin: 0;">Integration</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="development" name="services" value="Development">
+                            <label for="development" style="margin: 0;">Development</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="consulting" name="services" value="Consulting">
+                            <label for="consulting" style="margin: 0;">Consulting</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Tell us about your needs</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+            </form>
+        </div>
+    </div>
+    
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Dockside Hosting. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2026 Dockside Hosting. All rights reserved. | Enterprise Microsoft Services</p>
     </footer>
+    
+    <script>
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+        
+        document.getElementById('contactModal').addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') closeModal();
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const phone = document.getElementById('phone').value || 'Not provided';
+            const message = document.getElementById('message').value || 'No message';
+            
+            const services = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+                .map(el => el.value)
+                .join(', ') || 'Not specified';
+            
+            const subject = `Dockside Hosting: New Inquiry from ${name}`;
+            const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nPhone: ${phone}\n\nServices Interested: ${services}\n\nMessage:\n${message}`;
+            
+            const mailtoLink = `mailto:hello@docksidehosting.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            closeModal();
+        });
+    </script>
 </body>
 </html>
