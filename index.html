@@ -1,898 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dockside Hosting - Enterprise Microsoft Services</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #1f2937;
-            --secondary: #059669;
-            --accent: #06b6d4;
-            --light-bg: #f8fafc;
-            --white: #ffffff;
-            --text: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: var(--text);
-            line-height: 1.6;
-            background: var(--light-bg);
-        }
-        
-        /* Header */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-        }
-        
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #374151 100%);
-            color: var(--white);
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-        
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-        
-        .hero .accent {
-            color: var(--accent);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: #06b6d4;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.2);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary);
-        }
-        
-        /* Services Grid */
-        .services {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            color: var(--primary);
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .service-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .service-card p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        
-        .service-features {
-            list-style: none;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        
-        .service-features li {
-            padding: 0.25rem 0;
-        }
-        
-        .service-features li:before {
-            content: "✓ ";
-            color: var(--secondary);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-        
-        /* Highlights Section */
-        .highlights {
-            background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
-            color: var(--white);
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-        }
-        
-        .highlights-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .highlight-item h4 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .highlight-item p {
-            opacity: 0.95;
-        }
-        
-        /* Support Tiers */
-        .tiers {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-        
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .tier-card {
-            background: var(--white);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .tier-card.featured {
-            border-color: var(--accent);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
-        }
-        
-        .tier-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .tier-card h3 {
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            color: var(--primary);
-        }
-        
-        .tier-description {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .tier-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-        }
-        
-        .tier-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .tier-features li:before {
-            content: "⚡ ";
-            margin-right: 0.5rem;
-            color: var(--secondary);
-        }
-        
-        /* Why Choose */
-        .why-choose {
-            background: var(--white);
-            padding: 4rem 2rem;
-        }
-        
-        .why-choose-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .why-choose-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .why-choose-list {
-            list-style: none;
-        }
-        
-        .why-choose-list li {
-            padding: 1rem 0;
-            padding-left: 2.5rem;
-            position: relative;
-            color: var(--text);
-        }
-        
-        .why-choose-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            font-size: 1.5rem;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-        
-        .why-choose-visual {
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
-            border-radius: 12px;
-            padding: 3rem;
-            color: var(--white);
-            text-align: center;
-            font-size: 1.2rem;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .icon-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .icon-item {
-            text-align: center;
-            font-size: 2rem;
-        }
-        
-        .icon-item span {
-            display: block;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            color: rgba(255,255,255,0.9);
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: var(--primary);
-            color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .contact p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: var(--white);
-            padding: 3rem 2rem;
-            text-align: center;
-            opacity: 0.8;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-        }
-        
-        .checkbox-item input {
-            width: auto;
-            margin-right: 0.5rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .why-choose-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid,
-            .tiers-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tier-card.featured {
-                transform: scale(1);
-            }
-            
-            .cta-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocksideHosting | Microsoft Legacy &amp; Access Modernization — Commercial, GCC, GCC High, DoD</title>
+<meta name="description" content="DocksideHosting specializes in legacy SharePoint and Microsoft Access modernization, migrating organizations into SharePoint Online, Microsoft 365, and the Power Platform across Commercial, Education, GCC, GCC High, and DoD environments.">
+<style>
+  :root{
+    --navy:#0a2540;
+    --navy-deep:#071a2e;
+    --ink:#0f1b2d;
+    --blue:#0b5fa5;
+    --teal:#0891b2;
+    --cyan:#22c1dd;
+    --gold:#c8973a;
+    --bg:#f6f8fb;
+    --white:#ffffff;
+    --text:#1b2a3a;
+    --muted:#5b6b7c;
+    --border:#e3e9f0;
+    --radius:12px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.65;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem;}
+  section{padding:5rem 0;}
+  .eyebrow{
+    display:inline-block;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    font-weight:700;
+    color:var(--teal);
+    margin-bottom:.85rem;
+  }
+  h1,h2,h3,h4{color:var(--navy);font-weight:800;line-height:1.2;}
+  h2{font-size:2.1rem;margin-bottom:.75rem;}
+  .section-sub{color:var(--muted);font-size:1.05rem;max-width:760px;margin-bottom:2.5rem;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+  .btn{
+    display:inline-block;
+    padding:.9rem 1.7rem;
+    border-radius:8px;
+    font-weight:700;
+    text-decoration:none;
+    font-size:.98rem;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border:2px solid transparent;
+  }
+  .btn-primary{background:var(--cyan);color:var(--navy-deep);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(34,193,221,.28);}
+  .btn-outline{background:transparent;border-color:rgba(255,255,255,.55);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,.12);}
+  .btn-dark-outline{background:transparent;border-color:var(--navy);color:var(--navy);}
+  .btn-dark-outline:hover{background:var(--navy);color:#fff;}
+
+  /* Header / Nav */
+  header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(10,37,64,.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;max-width:1180px;margin:0 auto;}
+  .logo{color:#fff;font-weight:800;font-size:1.25rem;letter-spacing:.01em;}
+  .logo span{color:var(--cyan);}
+  .nav-links{display:flex;gap:1.6rem;list-style:none;}
+  .nav-links a{color:#dce7f2;text-decoration:none;font-size:.92rem;font-weight:600;}
+  .nav-links a:hover{color:var(--cyan);}
+  .nav-cta{display:flex;align-items:center;gap:1rem;}
+  .nav-cta .btn{padding:.6rem 1.2rem;font-size:.88rem;}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    background:
+      linear-gradient(160deg, rgba(7,26,46,.94) 0%, rgba(11,95,165,.88) 100%),
+      radial-gradient(circle at 80% 20%, rgba(34,193,221,.35), transparent 60%);
+    color:#fff;
+    padding:5.5rem 0 4rem;
+    text-align:center;
+  }
+  .hero .wrap{max-width:880px;}
+  .hero h1{color:#fff;font-size:2.9rem;margin:0 0 1.2rem;}
+  .hero p.lead{font-size:1.2rem;opacity:.92;margin-bottom:1.6rem;}
+  .hero .capline{
+    font-size:.92rem;font-weight:700;letter-spacing:.02em;color:#cfe9f4;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    display:inline-block;padding:.55rem 1.1rem;border-radius:999px;margin-bottom:2rem;
+  }
+  .hero .cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.4rem;}
+  .hero .trust-note{font-size:.9rem;color:#bcd3e6;font-weight:600;}
+
+  /* Trust bar */
+  .trustbar{
+    background:var(--navy-deep);
+    color:#cfe0ee;
+    padding:1rem 0;
+    font-size:.88rem;
+    font-weight:600;
+    letter-spacing:.01em;
+  }
+  .trustbar .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.6rem;text-align:center;}
+  .trustbar span.dot{opacity:.4;}
+
+  /* Why choose */
+  .grid{display:grid;gap:1.6rem;}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-5{grid-template-columns:repeat(5,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:980px){
+    .grid-4,.grid-5,.grid-3{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:640px){
+    .grid-4,.grid-5,.grid-3,.grid-2{grid-template-columns:1fr;}
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.7rem;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(10,37,64,.08);}
+  .card .ico{font-size:1.8rem;margin-bottom:.7rem;}
+  .card h3,.card h4{font-size:1.08rem;margin-bottom:.5rem;}
+  .card p{color:var(--muted);font-size:.94rem;}
+
+  .section-alt{background:var(--white);}
+  .section-navy{background:linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%);color:#fff;}
+  .section-navy h2{color:#fff;}
+  .section-navy .section-sub{color:#c7d8e6;}
+  .section-navy .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);}
+  .section-navy .card:hover{background:rgba(255,255,255,.09);}
+  .section-navy .card h3,.section-navy .card h4{color:#fff;}
+  .section-navy .card p{color:#c7d8e6;}
+
+  /* callout banner */
+  .callout{
+    background:linear-gradient(135deg, var(--gold), #a9782b);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:2rem 2.2rem;
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  .callout h3{color:#fff;font-size:1.3rem;margin-bottom:.35rem;}
+  .callout p{color:#fbeed9;font-size:.92rem;max-width:640px;}
+  .callout .badge{
+    font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(255,255,255,.18);padding:.35rem .8rem;border-radius:999px;
+  }
+
+  /* list with checks */
+  ul.check{list-style:none;}
+  ul.check li{padding:.55rem 0 .55rem 1.9rem;position:relative;color:var(--text);}
+  ul.check li:before{content:"✓";position:absolute;left:0;top:.5rem;color:var(--teal);font-weight:900;}
+  .section-navy ul.check li{color:#e4eef6;}
+  .section-navy ul.check li:before{color:var(--cyan);}
+
+  ul.plain{list-style:none;}
+  ul.plain li{padding:.4rem 0;color:var(--muted);}
+  ul.plain li:before{content:"— ";color:var(--teal);font-weight:700;}
+
+  /* pill tags */
+  .pill-row{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .pill{
+    background:#eaf4fb;color:var(--blue);border:1px solid #d6e9f5;
+    font-size:.85rem;font-weight:600;padding:.4rem .9rem;border-radius:999px;
+  }
+  .section-navy .pill{background:rgba(255,255,255,.1);color:#e4eef6;border-color:rgba(255,255,255,.2);}
+
+  /* two-col layout */
+  .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;}
+  @media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+
+  /* pipeline visual */
+  .pipeline{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;margin-top:1rem;}
+  .pipeline .step{
+    background:var(--white);color:var(--navy);
+    border:1px solid var(--border);
+    padding:.85rem 1.2rem;border-radius:999px;font-weight:700;font-size:.92rem;
+  }
+  .section-navy .pipeline .step{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18);}
+  .pipeline .arrow{color:var(--cyan);font-weight:900;font-size:1.1rem;}
+
+  /* future trust signals */
+  .signal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+  @media(max-width:900px){.signal-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.signal-grid{grid-template-columns:1fr;}}
+  .signal{
+    border:1.5px dashed var(--border);
+    border-radius:var(--radius);
+    padding:1.4rem;text-align:center;color:var(--muted);font-weight:600;font-size:.92rem;
+    background:#fbfcfe;
+  }
+  .signal small{display:block;margin-top:.3rem;font-weight:500;color:#9aacba;}
+
+  /* positioning */
+  .positioning{
+    background:var(--navy-deep);color:#fff;text-align:center;padding:5rem 0;
+  }
+  .positioning blockquote{
+    font-size:1.5rem;font-weight:700;max-width:880px;margin:0 auto 1.6rem;line-height:1.5;color:#fff;
+  }
+  .positioning .short{font-size:1.9rem;color:var(--cyan);font-weight:900;margin-bottom:.4rem;}
+  .positioning .supporting{color:#cfe0ee;font-size:1.05rem;}
+
+  /* CTA band */
+  .cta-band{
+    background:linear-gradient(135deg, var(--blue), var(--teal));
+    color:#fff;text-align:center;padding:4rem 0;
+  }
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:#eaf6fb;margin-bottom:1.6rem;font-size:1.05rem;}
+  .cta-band .cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .cta-band .btn-primary{background:#fff;color:var(--navy);}
+  .cta-band .btn-outline{border-color:rgba(255,255,255,.6);}
+
+  footer{background:var(--navy-deep);color:#9fb4c6;padding:2.6rem 0;font-size:.88rem;}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;}
+  footer a{color:#cfe0ee;text-decoration:none;}
+  footer .foot-links{display:flex;gap:1.4rem;flex-wrap:wrap;}
+
+  .legacy-list{columns:2;column-gap:2.5rem;}
+  .legacy-list li{break-inside:avoid;margin-bottom:.5rem;}
+  @media(max-width:640px){.legacy-list{columns:1;}}
+
+  @media(max-width:900px){
+    .nav-links,.nav-cta .btn-dark-outline{display:none;}
+    .nav-toggle{display:block;}
+    .hero h1{font-size:2.1rem;}
+  }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <div class="logo">Dock<span>side</span></div>
-            <nav>
-                <a href="#services">Services</a>
-                <a href="#tiers">Support</a>
-                <a href="#why">Why Us</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Enterprise <span class="accent">Microsoft Services</span><br>Built for Scale</h1>
-            <p>Expert managed services and support for Power Platform, SharePoint, and Azure environments</p>
-            <div class="cta-group">
-                <button class="btn btn-primary" onclick="openModal()">Get Started</button>
-                <a href="#services" class="btn btn-secondary">Learn More</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Highlights -->
-    <section class="highlights">
-        <div class="highlights-container">
-            <div class="highlight-item">
-                <h4>500+</h4>
-                <p>Enterprise Clients</p>
-            </div>
-            <div class="highlight-item">
-                <h4>24/7</h4>
-                <p>Expert Support</p>
-            </div>
-            <div class="highlight-item">
-                <h4>99.9%</h4>
-                <p>Uptime SLA</p>
-            </div>
-            <div class="highlight-item">
-                <h4>50+</h4>
-                <p>Microsoft Certifications</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services -->
-    <section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Comprehensive solutions tailored to your Microsoft infrastructure</p>
-        
-        <div class="services-grid">
-            <!-- Power Platform -->
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Power Platform Managed Services</h3>
-                <p>Optimize your Power Platform environment with expert administration and development support.</p>
-                <ul class="service-features">
-                    <li>Low-code/No-code Optimization</li>
-                    <li>Application Development</li>
-                    <li>Environment Administration</li>
-                    <li>Proactive Monitoring</li>
-                </ul>
-            </div>
-            
-            <!-- SharePoint -->
-            <div class="service-card">
-                <div class="service-icon">📁</div>
-                <h3>SharePoint Managed Services</h3>
-                <p>Enterprise-grade SharePoint administration with seamless integration capabilities.</p>
-                <ul class="service-features">
-                    <li>Site Management</li>
-                    <li>Security & Compliance</li>
-                    <li>Performance Optimization</li>
-                    <li>Migration Services</li>
-                </ul>
-            </div>
-            
-            <!-- Integration -->
-            <div class="service-card">
-                <div class="service-icon">🔗</div>
-                <h3>Application Integration</h3>
-                <p>Seamlessly connect Office 365, Dynamics 365, Azure, and third-party applications.</p>
-                <ul class="service-features">
-                    <li>API Management</li>
-                    <li>Data Synchronization</li>
-                    <li>Workflow Automation</li>
-                    <li>Real-time Analytics</li>
-                </ul>
-            </div>
-            
-            <!-- Azure -->
-            <div class="service-card">
-                <div class="service-icon">☁️</div>
-                <h3>Azure Infrastructure</h3>
-                <p>Secure, scalable cloud infrastructure with enterprise-grade management.</p>
-                <ul class="service-features">
-                    <li>Infrastructure as Code</li>
-                    <li>Security Hardening</li>
-                    <li>Cost Optimization</li>
-                    <li>Disaster Recovery</li>
-                </ul>
-            </div>
-            
-            <!-- Development -->
-            <div class="service-card">
-                <div class="service-icon">👨‍💻</div>
-                <h3>Custom Development</h3>
-                <p>Bespoke solutions built on Microsoft technologies for your unique business needs.</p>
-                <ul class="service-features">
-                    <li>Full-stack Development</li>
-                    <li>Solution Architecture</li>
-                    <li>Quality Assurance</li>
-                    <li>Support & Maintenance</li>
-                </ul>
-            </div>
-            
-            <!-- Consulting -->
-            <div class="service-card">
-                <div class="service-icon">💡</div>
-                <h3>Strategic Consulting</h3>
-                <p>Expert guidance on digital transformation and platform strategy.</p>
-                <ul class="service-features">
-                    <li>Platform Assessment</li>
-                    <li>Roadmap Planning</li>
-                    <li>Best Practices</li>
-                    <li>Change Management</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Support Tiers -->
-    <section id="tiers" class="tiers">
-        <h2 class="section-title">Support Plans</h2>
-        <p class="section-subtitle">Flexible support models to match your organization's needs</p>
-        
-        <div class="tiers-grid">
-            <!-- Pay-as-you-go -->
-            <div class="tier-card">
-                <h3>Hourly Consulting</h3>
-                <p class="tier-description">Perfect for one-off projects and quick wins</p>
-                <ul class="tier-features">
-                    <li>Pay-per-hour model</li>
-                    <li>Expert consultants</li>
-                    <li>Flexible scheduling</li>
-                    <li>Project-based</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openModal()">Book Now</button>
-            </div>
-            
-            <!-- Per-incident -->
-            <div class="tier-card featured">
-                <div class="tier-badge">Most Popular</div>
-                <h3>Per-Incident Support</h3>
-                <p class="tier-description">On-demand support for urgent issues</p>
-                <ul class="tier-features">
-                    <li>Issue diagnosis</li>
-                    <li>Swift resolution</li>
-                    <li>Technical expertise</li>
-                    <li>24-hour response</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openModal()">Get Support</button>
-            </div>
-            
-            <!-- Prepaid -->
-            <div class="tier-card">
-                <h3>Prepaid Support</h3>
-                <p class="tier-description">Annual commitment with better rates</p>
-                <ul class="tier-features">
-                    <li>Discounted rates</li>
-                    <li>Priority queue</li>
-                    <li>Dedicated team</li>
-                    <li>Strategic access</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openModal()">Learn More</button>
-            </div>
-            
-            <!-- Emergency -->
-            <div class="tier-card">
-                <h3>Emergency Support</h3>
-                <p class="tier-description">For mission-critical outages</p>
-                <ul class="tier-features">
-                    <li>15-min response</li>
-                    <li>Dedicated engineers</li>
-                    <li>On-call availability</li>
-                    <li>War room setup</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openModal()">Activate</button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Why Choose -->
-    <section id="why" class="why-choose">
-        <div class="why-choose-container">
-            <div class="why-choose-content">
-                <h2>Why Choose Dockside?</h2>
-                <ul class="why-choose-list">
-                    <li><strong>Microsoft Gold Partners</strong> with advanced certifications across all workloads</li>
-                    <li><strong>24/7/365 Support</strong> with guaranteed response times and SLAs</li>
-                    <li><strong>Enterprise Experience</strong> managing 500+ production environments</li>
-                    <li><strong>Proactive Monitoring</strong> preventing issues before they impact your business</li>
-                    <li><strong>Cost Optimization</strong> reducing your Microsoft cloud spend by up to 30%</li>
-                    <li><strong>Security First</strong> with compliance and governance expertise</li>
-                    <li><strong>Flexible Engagement</strong> models tailored to your needs</li>
-                </ul>
-            </div>
-            <div class="why-choose-visual">
-                <div>Enterprise-Grade Support for Your Microsoft Stack</div>
-                <div class="icon-grid">
-                    <div class="icon-item">
-                        🏆
-                        <span>Industry Leader</span>
-                    </div>
-                    <div class="icon-item">
-                        🔐
-                        <span>Secure</span>
-                    </div>
-                    <div class="icon-item">
-                        ⚡
-                        <span>Fast</span>
-                    </div>
-                    <div class="icon-item">
-                        💼
-                        <span>Professional</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <h2>Ready to Transform Your Microsoft Infrastructure?</h2>
-        <p>Let's discuss how Dockside Hosting can help you maximize your Microsoft investment</p>
-        <button class="btn btn-primary" onclick="openModal()">Schedule a Consultation</button>
-    </section>
-    
-    <!-- Contact Modal -->
-    <div class="modal" id="contactModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Get in Touch</h2>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="company">Company *</label>
-                    <input type="text" id="company" name="company" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                
-                <div class="form-group">
-                    <label>Services of Interest *</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="power" name="services" value="Power Platform">
-                            <label for="power" style="margin: 0;">Power Platform</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="sharepoint" name="services" value="SharePoint">
-                            <label for="sharepoint" style="margin: 0;">SharePoint</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="azure" name="services" value="Azure">
-                            <label for="azure" style="margin: 0;">Azure</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="integration" name="services" value="Integration">
-                            <label for="integration" style="margin: 0;">Integration</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="development" name="services" value="Development">
-                            <label for="development" style="margin: 0;">Development</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="consulting" name="services" value="Consulting">
-                            <label for="consulting" style="margin: 0;">Consulting</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Tell us about your needs</label>
-                    <textarea id="message" name="message"></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
-            </form>
-        </div>
+
+<header>
+  <div class="nav">
+    <div class="logo">Dockside<span>Hosting</span></div>
+    <ul class="nav-links">
+      <li><a href="#coverage">Microsoft Cloud Coverage</a></li>
+      <li><a href="#legacy">Legacy Expertise</a></li>
+      <li><a href="#access">Access Modernization</a></li>
+      <li><a href="#migration">Migration</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Request Assessment</a>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Dockside Hosting. All rights reserved. | Enterprise Microsoft Services</p>
-    </footer>
-    
-    <script>
-        function openModal() {
-            document.getElementById('contactModal').classList.add('active');
-        }
-        
-        function closeModal() {
-            document.getElementById('contactModal').classList.remove('active');
-        }
-        
-        document.getElementById('contactModal').addEventListener('click', (e) => {
-            if (e.target.id === 'contactModal') closeModal();
-        });
-        
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const phone = document.getElementById('phone').value || 'Not provided';
-            const message = document.getElementById('message').value || 'No message';
-            
-            const services = Array.from(document.querySelectorAll('input[name="services"]:checked'))
-                .map(el => el.value)
-                .join(', ') || 'Not specified';
-            
-            const subject = `Dockside Hosting: New Inquiry from ${name}`;
-            const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nPhone: ${phone}\n\nServices Interested: ${services}\n\nMessage:\n${message}`;
-            
-            const mailtoLink = `mailto:hello@docksidehosting.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-            
-            closeModal();
-        });
-    </script>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#8fe0ef;">Microsoft Migration &amp; Modernization</div>
+    <h1>Modernize the Microsoft Systems Your Organization Still Depends On</h1>
+    <p class="lead">DocksideHosting helps commercial, education, government, and regulated organizations migrate legacy SharePoint environments and transform Microsoft Access applications into modern Microsoft 365 and Power Platform solutions.</p>
+    <div class="capline">WSS 2.0 through SharePoint 2019 &nbsp;|&nbsp; Microsoft Access &nbsp;|&nbsp; Commercial &nbsp;|&nbsp; GCC &nbsp;|&nbsp; GCC High &nbsp;|&nbsp; DoD</div>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Request a Migration Assessment</a>
+      <a href="#contact" class="btn btn-outline">Talk to a Modernization Specialist</a>
+    </div>
+    <p class="trust-note">Cleared personnel available for qualifying government engagements.</p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trustbar">
+  <div class="wrap">
+    <span>Legacy SharePoint Specialists</span><span class="dot">•</span>
+    <span>Power Platform Modernization</span><span class="dot">•</span>
+    <span>Commercial</span><span class="dot">•</span>
+    <span>Education</span><span class="dot">•</span>
+    <span>GCC</span><span class="dot">•</span>
+    <span>GCC High</span><span class="dot">•</span>
+    <span>DoD</span><span class="dot">•</span>
+    <span>Cleared Personnel Available</span>
+  </div>
+</div>
+
+<!-- WHY CHOOSE -->
+<section id="why">
+  <div class="wrap">
+    <div class="eyebrow center">Differentiators</div>
+    <h2 class="center">Why Organizations Choose DocksideHosting</h2>
+    <p class="section-sub center">Deep legacy knowledge paired with modern Microsoft 365 and Power Platform expertise, purpose-built for complex and regulated environments.</p>
+    <div class="grid grid-4">
+      <div class="card"><div class="ico">🗂️</div><h3>Legacy Knowledge</h3><p>Experience with Microsoft technology dating back to Windows SharePoint Services.</p></div>
+      <div class="card"><div class="ico">⚙️</div><h3>Modern Microsoft Expertise</h3><p>Modernization using SharePoint Online, Power Platform, Dataverse, Microsoft 365, and related Microsoft technologies.</p></div>
+      <div class="card"><div class="ico">🏛️</div><h3>Government Cloud Capability</h3><p>Experience across Commercial, Education, GCC, GCC High, and DoD environments.</p></div>
+      <div class="card"><div class="ico">🔐</div><h3>Cleared Personnel</h3><p>Cleared resources available for projects requiring appropriate personnel security.</p></div>
+      <div class="card"><div class="ico">🔁</div><h3>Migration + Modernization</h3><p>We do not simply move technical debt from one platform to another.</p></div>
+      <div class="card"><div class="ico">🧩</div><h3>Complex Environment Experience</h3><p>Designed for environments containing custom applications, workflows, integrations, permissions, and years of accumulated technical debt.</p></div>
+      <div class="card"><div class="ico">🛡️</div><h3>Business Continuity</h3><p>Migration planning is designed around maintaining critical business operations.</p></div>
+      <div class="card"><div class="ico">📘</div><h3>Knowledge Transfer</h3><p>Architecture documentation and operational handoff are built into the engagement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLEARED PERSONNEL CALLOUT -->
+<section class="section-alt">
+  <div class="wrap">
+    <div class="callout">
+      <div>
+        <span class="badge">Security-Sensitive Projects</span>
+        <h3>Cleared Personnel Available for Government and Regulated Environments</h3>
+        <p>DocksideHosting has personnel with active government security clearance available for projects requiring additional security considerations — supporting environments, workloads, and modernization initiatives that require personnel capable of working within controlled or sensitive settings.</p>
+      </div>
+      <a href="#contact" class="btn btn-outline">Discuss Your Requirements</a>
+    </div>
+  </div>
+</section>
+
+<!-- MICROSOFT CLOUD COVERAGE -->
+<section id="coverage" class="section-navy">
+  <div class="wrap">
+    <div class="eyebrow center">Full Microsoft Cloud Landscape</div>
+    <h2 class="center">One Modernization Partner Across the Microsoft Cloud</h2>
+    <p class="section-sub center">From commercial Microsoft 365 to highly controlled government environments, DocksideHosting understands that architecture, deployment, security, integrations, and feature availability can differ significantly between Microsoft cloud environments.</p>
+    <div class="grid grid-5">
+      <div class="card"><h3>Commercial</h3><p>Microsoft 365 modernization for businesses and enterprise organizations.</p></div>
+      <div class="card"><h3>Education</h3><p>Microsoft 365 and Power Platform solutions for educational institutions.</p></div>
+      <div class="card"><h3>GCC</h3><p>Cloud modernization for U.S. government organizations and eligible government contractors.</p></div>
+      <div class="card"><h3>GCC High</h3><p>Migration and modernization for organizations operating in higher-compliance Microsoft government environments.</p></div>
+      <div class="card"><h3>DoD</h3><p>Microsoft modernization capabilities for applicable Department of Defense environments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNMENT & REGULATED -->
+<section id="regulated">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Government &amp; Regulated Industry</div>
+      <h2>Modernization for Organizations Where Security Matters</h2>
+      <p class="section-sub">Modernization is not simply a technical migration. Security, identity, governance, compliance, records management, data residency, permissions, and operational continuity must be considered throughout the project.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:1rem;">DocksideHosting supports modernization initiatives involving:</h4>
+      <div class="pill-row">
+        <span class="pill">Federal Government</span>
+        <span class="pill">State &amp; Local Government</span>
+        <span class="pill">Defense Organizations</span>
+        <span class="pill">Government Contractors</span>
+        <span class="pill">Education</span>
+        <span class="pill">Healthcare</span>
+        <span class="pill">Financial Services</span>
+        <span class="pill">Critical Infrastructure</span>
+        <span class="pill">Manufacturing</span>
+        <span class="pill">Regulated Enterprise Environments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGACY EXPERTISE -->
+<section id="legacy" class="section-alt">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Legacy Microsoft Expertise</div>
+      <h2>Old Microsoft Doesn't Scare Us.</h2>
+      <p class="section-sub" style="margin-bottom:.5rem;">We Go Further Back Than Most Microsoft Consulting Firms — many organizations still depend on Microsoft platforms that have been unsupported for years. DocksideHosting specializes in helping organizations understand, untangle, migrate, and modernize these environments.</p>
+      <p style="color:var(--muted);font-weight:600;">Alternative positioning: Deep Expertise in Microsoft Environments Others Have Left Behind</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:1rem;">Supported legacy technologies</h4>
+      <ul class="legacy-list check">
+        <li>Windows SharePoint Services 2.0</li>
+        <li>Windows SharePoint Services 3.0</li>
+        <li>Microsoft Office SharePoint Server 2007</li>
+        <li>SharePoint 2010</li>
+        <li>SharePoint 2013</li>
+        <li>SharePoint 2016</li>
+        <li>SharePoint 2019</li>
+        <li>Microsoft Access</li>
+        <li>Legacy SharePoint workflows</li>
+        <li>SharePoint Designer workflows</li>
+        <li>InfoPath forms</li>
+        <li>Custom SharePoint solutions</li>
+        <li>Legacy integrations</li>
+        <li>Legacy line-of-business applications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS MODERNIZATION -->
+<section id="access">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Access Application Modernization</div>
+      <h2>Turn Business-Critical Access Databases Into Modern Applications</h2>
+      <p class="section-sub">Microsoft Access databases frequently evolve into critical business applications containing years of business logic, forms, reports, queries, VBA, integrations, and institutional knowledge. DocksideHosting evaluates the complete application before determining the appropriate modernization path.</p>
+      <p style="font-weight:700;color:var(--navy);">We do not simply recreate an Access database screen-by-screen — we evaluate the business process and design a modern architecture appropriate for the organization.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:1rem;">Modernization options may include</h4>
+      <div class="pill-row">
+        <span class="pill">Power Apps</span>
+        <span class="pill">Power Automate</span>
+        <span class="pill">Dataverse</span>
+        <span class="pill">SharePoint Online</span>
+        <span class="pill">Azure SQL</span>
+        <span class="pill">SQL Server</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Microsoft Graph</span>
+        <span class="pill">Microsoft 365 Services</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLEX MIGRATION CAPABILITIES -->
+<section id="migration" class="section-navy">
+  <div class="wrap">
+    <div class="eyebrow center">Complex Migration Capabilities</div>
+    <h2 class="center">More Than Document Migration</h2>
+    <p class="section-sub center">A full-lifecycle approach to moving legacy Microsoft environments into modern architecture.</p>
+    <div class="grid grid-5">
+      <div class="card"><h3>Discovery &amp; Inventory</h3><p>Understand what exists before anything moves.</p></div>
+      <div class="card"><h3>Architecture Assessment</h3><p>Evaluate farms, web applications, site collections, databases, customizations, workflows, integrations, and dependencies.</p></div>
+      <div class="card"><h3>Data Migration</h3><p>Move structured and unstructured data into modern Microsoft platforms.</p></div>
+      <div class="card"><h3>Permission Modernization</h3><p>Analyze legacy permissions and redesign access using modern identity and governance practices.</p></div>
+      <div class="card"><h3>Workflow Modernization</h3><p>Replace aging workflows with Power Automate and modern Microsoft services.</p></div>
+      <div class="card"><h3>Application Modernization</h3><p>Transform legacy SharePoint and Access applications into Power Platform solutions.</p></div>
+      <div class="card"><h3>Integration Modernization</h3><p>Replace aging integrations using APIs, Microsoft Graph, connectors, Azure services, and supported modern architecture.</p></div>
+      <div class="card"><h3>Testing &amp; Validation</h3><p>Validate data, functionality, permissions, applications, workflows, and business processes.</p></div>
+      <div class="card"><h3>Cutover Planning</h3><p>Develop controlled migration waves and production transition plans.</p></div>
+      <div class="card"><h3>Knowledge Transfer</h3><p>Provide documentation, administrator guidance, architecture diagrams, and operational handoff.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- POWER PLATFORM CAPABILITY -->
+<section id="power-platform" class="section-alt">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Power Platform Capability</div>
+      <h2>Beyond Migration</h2>
+      <p class="section-sub">DocksideHosting can continue modernization after the legacy environment has been moved — extending value across the Power Platform and Microsoft 365 stack.</p>
+    </div>
+    <div class="card">
+      <div class="pill-row">
+        <span class="pill">Power Apps Canvas Apps</span>
+        <span class="pill">Power Apps Model-Driven Apps</span>
+        <span class="pill">Power Automate</span>
+        <span class="pill">Dataverse</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Copilot Studio</span>
+        <span class="pill">Microsoft Graph</span>
+        <span class="pill">SharePoint Online</span>
+        <span class="pill">Teams Integration</span>
+        <span class="pill">Microsoft 365 Integration</span>
+        <span class="pill">ALM</span>
+        <span class="pill">Environment Strategy</span>
+        <span class="pill">Governance</span>
+        <span class="pill">Center of Excellence</span>
+        <span class="pill">Security Role Design</span>
+        <span class="pill">Data Architecture</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGULATED CLOUD ARCHITECTURE -->
+<section id="regulated-arch">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Regulated Cloud Architecture</div>
+      <h2>Commercial and Government Clouds Are Not the Same</h2>
+      <p class="section-sub">A solution designed for Microsoft 365 Commercial cannot always be deployed unchanged into GCC, GCC High, or DoD environments. Service availability, connectors, integrations, authentication patterns, compliance requirements, release schedules, and architecture options may differ. DocksideHosting considers the target Microsoft cloud from the beginning of the modernization process.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:1rem;">Particularly valuable when designing</h4>
+      <ul class="check">
+        <li>Power Platform solutions</li>
+        <li>SharePoint Online architecture</li>
+        <li>Identity integrations</li>
+        <li>Power Automate workflows</li>
+        <li>Third-party integrations</li>
+        <li>Data movement</li>
+        <li>APIs</li>
+        <li>Reporting solutions</li>
+        <li>Automation</li>
+        <li>AI-enabled solutions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY-FIRST -->
+<section id="security" class="section-navy">
+  <div class="wrap">
+    <div class="eyebrow center">Security-First Modernization</div>
+    <h2 class="center">Security Is Part of the Architecture</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>Least Privilege</h3><p>Modernize legacy permission structures around appropriate access.</p></div>
+      <div class="card"><h3>Identity</h3><p>Design around Microsoft Entra ID and modern authentication.</p></div>
+      <div class="card"><h3>Data Governance</h3><p>Consider where information is stored, accessed, shared, and retained.</p></div>
+      <div class="card"><h3>Auditability</h3><p>Build solutions with operational visibility and appropriate logging.</p></div>
+      <div class="card"><h3>Environment Separation</h3><p>Support structured development, test, and production environments.</p></div>
+      <div class="card"><h3>Secure Application Design</h3><p>Modernize legacy applications without recreating outdated security patterns.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MIGRATION FACTORY -->
+<section id="factory" class="section-alt">
+  <div class="wrap">
+    <div class="eyebrow center">Migration Factory Capability</div>
+    <h2 class="center">Modernization at Scale</h2>
+    <p class="section-sub center">Organizations with one legacy application need a migration project. Organizations with hundreds need a migration program. DocksideHosting can establish a repeatable modernization framework for portfolios containing:</p>
+    <div class="grid grid-4" style="margin-bottom:2.5rem;">
+      <div class="card"><p>Hundreds of SharePoint sites</p></div>
+      <div class="card"><p>Multiple legacy farms</p></div>
+      <div class="card"><p>Large Access application inventories</p></div>
+      <div class="card"><p>Departmental applications</p></div>
+      <div class="card"><p>Legacy workflows</p></div>
+      <div class="card"><p>InfoPath forms</p></div>
+      <div class="card"><p>Custom solutions</p></div>
+      <div class="card"><p>Unsupported integrations</p></div>
+    </div>
+    <div class="pipeline">
+      <span class="step">Inventory</span><span class="arrow">→</span>
+      <span class="step">Categorize</span><span class="arrow">→</span>
+      <span class="step">Prioritize</span><span class="arrow">→</span>
+      <span class="step">Remediate</span><span class="arrow">→</span>
+      <span class="step">Migrate</span><span class="arrow">→</span>
+      <span class="step">Validate</span><span class="arrow">→</span>
+      <span class="step">Modernize</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO ASSESSMENT -->
+<section id="portfolio">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">Portfolio Assessment</div>
+      <h2>Microsoft Legacy Technology Portfolio Assessment</h2>
+      <p class="section-sub">Instead of assessing only one SharePoint farm or Access database, DocksideHosting can assess an organization's entire legacy Microsoft footprint.</p>
+      <a href="#contact" class="btn btn-dark-outline">Assess Your Microsoft Legacy Estate</a>
+    </div>
+    <div class="card">
+      <h4 style="margin-bottom:1rem;">Potential deliverables</h4>
+      <div class="pill-row">
+        <span class="pill">SharePoint Farm Inventory</span>
+        <span class="pill">Site Inventory</span>
+        <span class="pill">Access Database Inventory</span>
+        <span class="pill">Workflow Inventory</span>
+        <span class="pill">InfoPath Inventory</span>
+        <span class="pill">Custom Solution Inventory</span>
+        <span class="pill">Integration Inventory</span>
+        <span class="pill">Business Owner Identification</span>
+        <span class="pill">Technical Complexity Rating</span>
+        <span class="pill">Business Criticality Rating</span>
+        <span class="pill">Security Risk Identification</span>
+        <span class="pill">End-of-Life Technology Identification</span>
+        <span class="pill">Modernization Recommendation</span>
+        <span class="pill">Target Architecture</span>
+        <span class="pill">Migration Grouping</span>
+        <span class="pill">Priority Ranking</span>
+        <span class="pill">Estimated Level of Effort</span>
+        <span class="pill">Modernization Roadmap</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDITIONAL CAPABILITIES -->
+<section class="section-alt">
+  <div class="wrap">
+    <div class="eyebrow center">Additional Capabilities</div>
+    <h2 class="center">Full-Stack Microsoft Modernization Support</h2>
+    <p class="section-sub center">Capabilities that support and extend our legacy SharePoint and Access modernization work.</p>
+    <div class="pill-row" style="justify-content:center;">
+      <span class="pill">Microsoft Entra ID</span><span class="pill">Azure</span><span class="pill">Azure SQL</span>
+      <span class="pill">Microsoft Graph</span><span class="pill">Teams</span><span class="pill">Power BI</span>
+      <span class="pill">Copilot Studio</span><span class="pill">Power Platform ALM</span><span class="pill">Power Platform Governance</span>
+      <span class="pill">Center of Excellence</span><span class="pill">Tenant-to-Tenant Migrations</span><span class="pill">Records Management</span>
+      <span class="pill">Purview</span><span class="pill">Data Loss Prevention</span><span class="pill">Power Platform DLP</span>
+      <span class="pill">SharePoint Governance</span><span class="pill">Microsoft 365 Governance</span><span class="pill">Application Rationalization</span>
+      <span class="pill">Data Classification</span><span class="pill">Security Architecture</span><span class="pill">Zero Trust Architecture</span>
+      <span class="pill">Azure DevOps</span><span class="pill">GitHub</span><span class="pill">CI/CD</span>
+      <span class="pill">Custom Connectors</span><span class="pill">API Development</span><span class="pill">SQL Modernization</span>
+      <span class="pill">VBA Application Analysis</span><span class="pill">SharePoint Framework</span><span class="pill">Legacy SharePoint Code Analysis</span>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow center">Credentials</div>
+    <h2 class="center">Experience You Can Put Behind the Migration</h2>
+    <div class="grid grid-3">
+      <div class="card"><p>Microsoft-certified professionals</p></div>
+      <div class="card"><p>Experienced Microsoft cloud architects</p></div>
+      <div class="card"><p>Power Platform specialists</p></div>
+      <div class="card"><p>Legacy SharePoint expertise</p></div>
+      <div class="card"><p>Government cloud experience</p></div>
+      <div class="card"><p>Cleared personnel available</p></div>
+      <div class="card"><p>Enterprise architecture experience</p></div>
+      <div class="card"><p>Migration planning and execution</p></div>
+      <div class="card"><p>Application modernization experience</p></div>
+    </div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:1.6rem;">Only certifications, partner designations, contract vehicles, clearance levels, or compliance certifications that DocksideHosting can independently substantiate are published on this site.</p>
+  </div>
+</section>
+
+<!-- FUTURE TRUST SIGNALS -->
+<section class="section-alt">
+  <div class="wrap">
+    <div class="eyebrow center">Growing With Our Clients</div>
+    <h2 class="center">Trust Signals Coming Soon</h2>
+    <p class="section-sub center">As DocksideHosting grows, this area of the site will feature verified credentials, registrations, and results.</p>
+    <div class="signal-grid">
+      <div class="signal">Microsoft Certifications</div>
+      <div class="signal">SAM.gov Registration</div>
+      <div class="signal">UEI</div>
+      <div class="signal">CAGE Code</div>
+      <div class="signal">Small-Business Classifications</div>
+      <div class="signal">Government Contract Vehicles</div>
+      <div class="signal">Customer Logos</div>
+      <div class="signal">Case Studies</div>
+      <div class="signal">Migration Statistics</div>
+      <div class="signal">Security / Compliance Credentials</div>
+      <div class="signal">Partner Designations</div>
+      <div class="signal">Additional Achievements<small>Published once substantiated</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND POSITIONING -->
+<div class="positioning">
+  <div class="wrap">
+    <div class="short">Legacy Microsoft. Modern Cloud.</div>
+    <p class="supporting" style="margin-bottom:2rem;">SharePoint and Access modernization across Commercial, GCC, GCC High, and DoD environments.</p>
+    <blockquote>“DocksideHosting is a Microsoft-focused legacy modernization company specializing in complex SharePoint and Microsoft Access migrations. We help commercial, education, government, and regulated organizations move aging Microsoft technology into SharePoint Online, Microsoft 365, and the Power Platform, with capabilities spanning Commercial, GCC, GCC High, and DoD environments.”</blockquote>
+  </div>
+</div>
+
+<!-- CTA / CONTACT -->
+<section id="contact" class="cta-band">
+  <div class="wrap">
+    <h2>Ready to Modernize Your Microsoft Environment?</h2>
+    <p>Request a migration assessment or talk to a modernization specialist about your SharePoint, Access, or Power Platform initiative.</p>
+    <div class="cta-row">
+      <a href="mailto:info@docksidehosting.com" class="btn btn-primary">Request a Migration Assessment</a>
+      <a href="mailto:info@docksidehosting.com" class="btn btn-outline">Talk to a Modernization Specialist</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> DocksideHosting. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="#coverage">Cloud Coverage</a>
+      <a href="#legacy">Legacy Expertise</a>
+      <a href="#access">Access Modernization</a>
+      <a href="#security">Security</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
